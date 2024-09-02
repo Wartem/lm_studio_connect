@@ -13,6 +13,26 @@ This repository provides a simple framework for integrating and managing languag
 It includes scripts for managing model configurations, sending prompts, and starting automated conversations using preloaded models. 
 The project is designed to streamline the process of interacting with LLMs, allowing for seamless model management and interaction.
 
+## Example of usage, with LM Studio running in the background
+
+```
+      model_manager = ModelManager()
+      available_models = model_manager.load_and_save_models()
+      
+      if not available_models:
+          return
+
+      selected_model = random.choice(available_models)
+
+      prompt = "Tell me about something advanced and interesting about Python"
+      response = model_manager.lm_manager.send_prompt(prompt=prompt, model_name=selected_model)
+  
+      if 'choices' in response and response['choices']:
+          print("Response:", response['choices'][0]['text'].strip())
+      else:
+          print("No valid response received.")
+```
+
 ## Project Structure
 
 - **`config/` Directory**:
