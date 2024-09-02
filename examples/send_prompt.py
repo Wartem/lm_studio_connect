@@ -11,6 +11,7 @@ def send_prompt(prompt="Tell me about something advanced and interesting about P
     available_models = model_manager.load_and_save_models()
     
     if not available_models:
+        print("No models available")
         return
 
     selected_model = random.choice(available_models)
