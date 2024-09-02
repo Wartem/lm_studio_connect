@@ -43,7 +43,7 @@ The project is designed to streamline the process of interacting with LLMs, allo
         print("No models available.")
         return
         
-    phil = autogen.ConversableAgent(
+    steven = autogen.ConversableAgent(
         "Steven",
         llm_config=model_manager.get_model_config(model),
         system_message="""
@@ -60,7 +60,7 @@ The project is designed to streamline the process of interacting with LLMs, allo
                         for Agentic AI, and how to use them!
                     '''
 
-    user_proxy.initiate_chat(phil, message=initial_message)
+    user_proxy.initiate_chat(steven, message=initial_message)
 ```
 
 ## Project Structure
