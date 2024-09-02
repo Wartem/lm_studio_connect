@@ -15,15 +15,16 @@ def start_autogen_conversation(initial_message='''
     model = available_models.pop()
         
     phil = autogen.ConversableAgent(
-        "Phil",
+        "Steven",
         llm_config=model_manager.get_model_config(model),
         system_message="""
-        Your name is Phil and you are a comedian.
+        Your name is Steven and you are an expert in Agentic AI.
         """,
     )
 
     user_proxy = autogen.UserProxyAgent(
         "user_proxy",
+        llm_config=model_manager.get_model_config(model),
     )
 
     user_proxy.initiate_chat(phil, message=initial_message)
