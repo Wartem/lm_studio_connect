@@ -12,17 +12,19 @@
 This repository provides a simple framework for integrating and managing language models using a local LLM (Language Model) Studio instance. 
 It includes scripts for managing model configurations, sending prompts, and starting automated conversations using preloaded models. 
 The project is designed to streamline the process of interacting with LLMs, allowing for seamless model management and interaction.
-
+------------
 ## Example of usage, with LM Studio running in the background
 
 ```
       model_manager = ModelManager()
       available_models = model_manager.load_and_save_models()
       
-      if not available_models:
-          return
+    if not available_models:
+        print("No models available")
+        return
 
       selected_model = random.choice(available_models)
+      print(f"Selected model: {selected_model}")
 
       prompt = "Tell me about something advanced and interesting about Python"
       response = model_manager.lm_manager.send_prompt(prompt=prompt, model_name=selected_model)
@@ -31,6 +33,34 @@ The project is designed to streamline the process of interacting with LLMs, allo
           print("Response:", response['choices'][0]['text'].strip())
       else:
           print("No valid response received.")
+```
+## Example 2 of usage, using Autogen and LM Studio running in the background
+```
+    model_manager = ModelManager()
+    model = model_manager.load_and_save_models().pop()
+    
+    if not model:
+        print("No models available.")
+        return
+        
+    phil = autogen.ConversableAgent(
+        "Steven",
+        llm_config=model_manager.get_model_config(model),
+        system_message="""
+        Your name is Steven and you are an expert in Agentic AI.
+        """,
+    )
+
+    user_proxy = autogen.UserProxyAgent(
+        "user_proxy",
+        llm_config=model_manager.get_model_config(model),
+    )
+    
+    initial_message=''' Let's discuss Open-Source Programming Frameworks 
+                        for Agentic AI, and how to use them!
+                    '''
+
+    user_proxy.initiate_chat(phil, message=initial_message)
 ```
 
 ## Project Structure
