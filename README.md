@@ -37,13 +37,15 @@ The project is designed to streamline the process of interacting with LLMs, allo
 ## Example 2 of usage, using Autogen and LM Studio running in the background
 ```
     model_manager = ModelManager()
-    model = model_manager.load_and_save_models().pop()
+    models = model_manager.load_and_save_models()
     
-    if not model:
+    if not models:
         print("No models available.")
         return
+    
+    model = models.pop()
         
-    steven = autogen.ConversableAgent(
+    phil = autogen.ConversableAgent(
         "Steven",
         llm_config=model_manager.get_model_config(model),
         system_message="""
