@@ -12,12 +12,58 @@
 This repository provides a simple framework for integrating and managing language models using a local LLM (Language Model) Studio instance. 
 It includes scripts for managing model configurations, sending prompts, and starting automated conversations using preloaded models. 
 The project is designed to streamline the process of interacting with LLMs, allowing for seamless model management and interaction.
+------------
+## Example of usage, with LM Studio running in the background
+
+```
+      model_manager = ModelManager()
+      available_models = model_manager.load_and_save_models()
+      
+    if not available_models:
+        print("No models available")
+        return
+
+      selected_model = random.choice(available_models)
+      print(f"Selected model: {selected_model}")
+
+      prompt = "Tell me about something advanced and interesting about Python"
+      response = model_manager.lm_manager.send_prompt(prompt=prompt, model_name=selected_model)
+  
+      if 'choices' in response and response['choices']:
+          print("Response:", response['choices'][0]['text'].strip())
+      else:
+          print("No valid response received.")
+```
+## Example 2 of usage, using Autogen and LM Studio running in the background
+```
+    model_manager = ModelManager()
+    model = model_manager.load_and_save_models().pop()
+    
+    if not model:
+        print("No models available.")
+        return
+        
+    steven = autogen.ConversableAgent(
+        "Steven",
+        llm_config=model_manager.get_model_config(model),
+        system_message="""
+        Your name is Steven and you are an expert in Agentic AI.
+        """,
+    )
+
+    user_proxy = autogen.UserProxyAgent(
+        "user_proxy",
+        llm_config=model_manager.get_model_config(model),
+    )
+    
+    initial_message=''' Let's discuss Open-Source Programming Frameworks 
+                        for Agentic AI, and how to use them!
+                    '''
+
+    user_proxy.initiate_chat(steven, message=initial_message)
+```
 
 ## Project Structure
-
-- **Root Directory**:
-  - **`main.py`**: A script with examples of how to interact with the LLM Studio with the help of this project. It provides a user interface for sending prompts to loaded models, initiating automated conversations with a conversational agent, and managing the overall workflow.
-  - **`model_library.json`**: A JSON file storing configurations for various models available in the LLM Studio. It contains details such as model names, API endpoints, temperature settings, and token limits.
 
 - **`config/` Directory**:
   - **`config_manager.py`**: Manages the loading, retrieval, and saving of model configurations stored in `model_library.json`. This module ensures that the system can easily retrieve and update model configurations as needed.
@@ -38,12 +84,6 @@ The project is designed to streamline the process of interacting with LLMs, allo
 - **Autogen Conversations**: Start and manage conversations with a pre-defined conversational agent, allowing for the creation of interactive AI experiences.
 - **Model Management**: Automatically load, save, and configure models, simplifying the process of integrating multiple language models into your workflow.
 - **Utility Scripts**: Includes scripts for printing directory structures and managing configuration files, aiding in project organization and documentation.
-
-## How to Use
-
-1. **Run `main.py`**: This will launch the main interface, where you can select options to interact with the models or start a conversation.
-2. **Modify `model_library.json`**: Add or adjust model configurations as needed to work with different LLMs.
-3. **Use `structure_print.py`**: Generate a directory structure report to document the project setup.
 
 ## Requirements
 
@@ -66,7 +106,7 @@ cd lm_studio_connect
 ```
 python -m venv venv
 ```
-### Activate the virtual environment
+***Activate the virtual environment***
 
 On Windows:
 ```
@@ -77,6 +117,12 @@ On macOS and Linux:
 ```
 source venv/bin/activate
 ```
+
+## How to Use
+
+1. **Run** the examples inside the folder examples.
+2. **Modify `model_library.json`**: Add or adjust model configurations as needed to work with different LLMs.
+3. **Use `structure_print.py`**: Generate a directory structure report to document the project setup.
 
 ## License
 
