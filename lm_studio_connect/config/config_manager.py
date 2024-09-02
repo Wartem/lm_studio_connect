@@ -1,7 +1,7 @@
 import json
 
 class ConfigManager:
-    def __init__(self, config_file):
+    def __init__(self, config_file="model_library.json"):
         self.config_file = config_file
         self.model_configs = self.load_model_configs()
 

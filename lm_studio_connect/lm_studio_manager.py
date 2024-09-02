@@ -1,6 +1,6 @@
 import requests
 from requests.exceptions import RequestException
-from utils.constants import VALID_LM_STUDIO_PARAMS
+from lm_studio_connect.utils.constants import VALID_LM_STUDIO_PARAMS
 
 class LMStudioManager:
     def __init__(self, base_url="http://localhost:1234"):

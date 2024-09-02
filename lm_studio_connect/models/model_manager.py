@@ -1,10 +1,14 @@
-from config.config_manager import ConfigManager
-from lm_studio_connection.lm_studio_manager import LMStudioManager
-from utils.helpers import get_short_name
-from utils.constants import VALID_LM_STUDIO_PARAMS
+import os
+from lm_studio_connect.config.config_manager import ConfigManager #lm_studio_connect.config_manager import ConfigManager
+from lm_studio_connect.lm_studio_manager import LMStudioManager
+from lm_studio_connect.utils.helpers import get_short_name
+from lm_studio_connect.utils.constants import VALID_LM_STUDIO_PARAMS
 
 class ModelManager:
-    def __init__(self, config_file):
+    def __init__(self, config_file=None):
+        config_file = config_file if config_file else \
+            os.path.join(os.path.dirname(__file__), '../config/model_library.json')
+        
         self.config_manager = ConfigManager(config_file)
         self.lm_manager = LMStudioManager()
 
