@@ -10,11 +10,13 @@ def start_autogen_conversation(initial_message='''
                                '''):
     
     model_manager = ModelManager()
-    model = model_manager.load_and_save_models().pop()
+    models = model_manager.load_and_save_models()
     
-    if not model:
+    if not models:
         print("No models available.")
         return
+    
+    model = models.pop()
         
     phil = autogen.ConversableAgent(
         "Steven",
