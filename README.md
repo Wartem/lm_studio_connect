@@ -15,10 +15,6 @@ The project is designed to streamline the process of interacting with LLMs, allo
 
 ## Project Structure
 
-- **Root Directory**:
-  - **`main.py`**: A script with examples of how to interact with the LLM Studio with the help of this project. It provides a user interface for sending prompts to loaded models, initiating automated conversations with a conversational agent, and managing the overall workflow.
-  - **`model_library.json`**: A JSON file storing configurations for various models available in the LLM Studio. It contains details such as model names, API endpoints, temperature settings, and token limits.
-
 - **`config/` Directory**:
   - **`config_manager.py`**: Manages the loading, retrieval, and saving of model configurations stored in `model_library.json`. This module ensures that the system can easily retrieve and update model configurations as needed.
 
@@ -38,12 +34,6 @@ The project is designed to streamline the process of interacting with LLMs, allo
 - **Autogen Conversations**: Start and manage conversations with a pre-defined conversational agent, allowing for the creation of interactive AI experiences.
 - **Model Management**: Automatically load, save, and configure models, simplifying the process of integrating multiple language models into your workflow.
 - **Utility Scripts**: Includes scripts for printing directory structures and managing configuration files, aiding in project organization and documentation.
-
-## How to Use
-
-1. **Run `main.py`**: This will launch the main interface, where you can select options to interact with the models or start a conversation.
-2. **Modify `model_library.json`**: Add or adjust model configurations as needed to work with different LLMs.
-3. **Use `structure_print.py`**: Generate a directory structure report to document the project setup.
 
 ## Requirements
 
@@ -77,6 +67,12 @@ On macOS and Linux:
 ```
 source venv/bin/activate
 ```
+
+## How to Use
+
+1. **Run** the examples inside the folder examples.
+2. **Modify `model_library.json`**: Add or adjust model configurations as needed to work with different LLMs.
+3. **Use `structure_print.py`**: Generate a directory structure report to document the project setup.
 
 ## License
 
