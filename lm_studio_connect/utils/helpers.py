@@ -1,2 +1,2 @@
 def get_short_name(model):
-    return model.rsplit('/', 1)[-1]
+    return model.rsplit("/", 1)[-1]

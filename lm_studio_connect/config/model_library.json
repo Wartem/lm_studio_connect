@@ -8,7 +8,7 @@
                 "temperature": 0.5
             }
         ],
-        "cache_seed": "None",
+        "cache_seed": null,
         "max_tokens": 4096
     },
     "phi-3-mini-4k-instruct-q4": {
