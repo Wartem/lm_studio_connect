@@ -16,53 +16,57 @@ The project is designed to streamline the process of interacting with LLMs, allo
 ## Example of usage, with LM Studio running in the background
 
 ```
-      model_manager = ModelManager()
-      available_models = model_manager.load_and_save_models()
-      
-    if not available_models:
-        print("No models available")
-        return
+    lm_studio_manager = LMStudioManager()
+    loaded_model_names = lm_studio_manager.get_loaded_model_names()
+    selected_model_name = select_model_name(loaded_model_names)
+    model_config = lm_studio_manager.get_model_config(selected_model_name)
 
-      selected_model = random.choice(available_models)
-      print(f"Selected model: {selected_model}")
+    response = lm_studio_manager.send_chat(
+        model_name=selected_model_name,
+        messages=[
+            {"role": "system", "content": "You are a helpful coding assistant."},
+            {"role": "user", "content": "How do I init and update a git submodule?"},
+        ],
+        temperature=0.7,
+        max_tokens=-1,
+        model_config={"config_list": model_config["config_list"]},
+    )
 
-      prompt = "Tell me about something advanced and interesting about Python"
-      response = model_manager.lm_manager.send_prompt(prompt=prompt, model_name=selected_model)
-  
-      if 'choices' in response and response['choices']:
-          print("Response:", response['choices'][0]['text'].strip())
-      else:
-          print("No valid response received.")
+    print("response", response)
 ```
 ## Example 2 of usage, using Autogen and LM Studio running in the background
 ```
-    model_manager = ModelManager()
-    models = model_manager.load_and_save_models()
-    
-    if not models:
-        print("No models available.")
-        return
-    
-    model = models.pop()
-        
-    phil = autogen.ConversableAgent(
+    lm_studio_manager = LMStudioManager()
+    loaded_model_names = lm_studio_manager.get_loaded_model_names()
+    selected_model_name = select_model_name(loaded_model_names)
+    model_config_list = lm_studio_manager.get_model_config_list(selected_model_name)
+
+    start_autogen_conversation(model_config_list)
+
+
+def start_autogen_conversation(
+    model_config_list,
+    initial_message="""
+                    Let's discuss Open-Source Programming Frameworks 
+                    for Agentic AI, and how to use them!
+                    """,
+                    ):
+
+    steven = autogen.ConversableAgent(
         "Steven",
-        llm_config=model_manager.get_model_config(model),
         system_message="""
         Your name is Steven and you are an expert in Agentic AI.
         """,
+        llm_config=model_config_list,
     )
 
     user_proxy = autogen.UserProxyAgent(
         "user_proxy",
-        llm_config=model_manager.get_model_config(model),
+        llm_config=model_config_list,
     )
-    
-    initial_message=''' Let's discuss Open-Source Programming Frameworks 
-                        for Agentic AI, and how to use them!
-                    '''
 
     user_proxy.initiate_chat(steven, message=initial_message)
+
 ```
 
 ## Project Structure
