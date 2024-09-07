@@ -6,6 +6,7 @@ VALID_LM_STUDIO_PARAMS = [
     "top_p",
     "top_k",
     "stream",
+    "price",
     "stop",
     "presence_penalty",
     "frequency_penalty",
