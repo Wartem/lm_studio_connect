@@ -1,7 +1,3 @@
-import sys
-import os
-
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 import autogen
 from lm_studio_connect.lm_studio_manager import LMStudioManager
 from lm_studio_connect.models.model_selector import select_model_name
@@ -22,7 +18,7 @@ def start_autogen_conversation(
                     Let's discuss Open-Source Programming Frameworks 
                     for Agentic AI, and how to use them!
                     """,
-                    ):
+):
 
     steven = autogen.ConversableAgent(
         "Steven",

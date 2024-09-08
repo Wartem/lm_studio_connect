@@ -126,6 +126,16 @@ source venv/bin/activate
 2. **Modify `model_library.json`**: Add or adjust model configurations as needed to work with different LLMs.
 3. **Use `structure_print.py`**: Generate a directory structure report to document the project setup.
 
+## Disclaimer
+
+**LM Studio Connect** is an independent project and has no affiliation with the official LM Studio team or its original codebase.
+
+- This project is developed as a separate initiative to provide enhanced connectivity options for local language models.
+- It is not endorsed, supported, or maintained by the official LM Studio team.
+- Any issues, features, or updates related to LM Studio Connect are separate from the official LM Studio project.
+
+> **Note**: For official support, documentation, and updates regarding LM Studio itself, please refer to the [official LM Studio resources](https://lmstudio.ai).
+
 ## License
 
 This project is licensed under the MIT License.

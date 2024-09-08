@@ -1,9 +1,15 @@
+# model_selector.py
+
+""" Module for different ways of selecting the model to use from LM Studio """
+
 from enum import Enum
 import random
 from typing import Optional, Set, Dict
 
 
 class SelectionMode(Enum):
+    """Modes for selection of LLM"""
+
     DEFAULT = "default"
     SPECIFIC = "specific"
     RANDOM = "random"
@@ -19,14 +25,17 @@ def select_model_name(
     Select a model name based on the specified mode.
 
     Args:
-        mode (SelectionMode): The selection mode to use. Defaults to SelectionMode.DEFAULT.
-        name (Optional[str]): The name of a specific model to select. Only used when mode is SelectionMode.SPECIFIC.
+        mode (SelectionMode): The selection mode to use.
+        Defaults to SelectionMode.DEFAULT.
+        name (Optional[str]): The name of a specific model to select.
+        Only used when mode is SelectionMode.SPECIFIC.
 
     Returns:
         str: The selected model name.
 
     Raises:
-        ValueError: If the mode is invalid, if no models are available, or if a specific model name is not found.
+        ValueError: If the mode is invalid, if no models are
+        available, or if a specific model name is not found.
 
     Usage:
         selector = ModelSelector()
@@ -35,7 +44,8 @@ def select_model_name(
         model = selector.get_model_name()
 
         # Specific model selection
-        model = selector.get_model_name(mode=SelectionMode.SPECIFIC, name="gpt-3.5-turbo")
+        model = selector.get_model_name
+        (mode=SelectionMode.SPECIFIC, name="meta-llama-3.1-8b-instruct-q8_0")
 
         # Random selection
         model = selector.get_model_name(mode=SelectionMode.RANDOM)
@@ -59,7 +69,7 @@ def select_model_name(
     )()
 
     if selected_model is None:
-        raise ValueError(f"Invalid mode or model name not found")
+        raise ValueError("Invalid mode or model name not found")
 
     # print(f"Selected model: {selected_model}")
 
