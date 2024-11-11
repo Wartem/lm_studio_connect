@@ -104,11 +104,11 @@ Autogen is included solely as an example for usage and integration with LLM Stud
 
 Clone the repository:
 ```
-git clone https://github.com/yourusername/lm_studio_connect.git
+git clone https://github.com/Wartem/lm_studio_connect.git
 cd lm_studio_connect
 ```
 
-### Optional: Create a virtual environment
+### Recommended: Create a virtual environment
 ```
 python -m venv venv
 ```
